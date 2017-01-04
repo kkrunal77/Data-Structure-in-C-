@@ -1,14 +1,13 @@
 //Tree All operation.
 
 #include <iostream>
+#include <queue>
 using namespace std;
 struct BstNode{
    int data;
    BstNode *left;
    BstNode *right;
 };
-
-
 
   BstNode *GetnewNode(int data){
      BstNode *newNode = new BstNode();
@@ -142,7 +141,19 @@ struct BstNode{
     cout<<root->data<<" ";
   }
 
+ void  Lavel_Order(BstNode *root){
+        if(root==NULL){return; }
+        queue<BstNode*> Q;
+        Q.push(root);
+        while(!Q.empty()){
+            BstNode* current=Q.front();
+            Q.pop();
+            cout<<current->data<<" ";
+            if(root->left!=NULL){Q.push(current->left);}
+            if(root->right!=NULL){Q.push(current->right);}
 
+        }
+    }
 int main(){
  BstNode *root=NULL;
  root=Insert(root, 15);
@@ -163,6 +174,8 @@ int main(){
  else{
     cout<<"Not Found";
  }*/
+ Lavel_Order(root);
+ cout<<"my out put"<<endl;
  Preorder(root);
  cout<<endl;
  Inorder(root);
@@ -171,6 +184,8 @@ int main(){
  root=Delete(root, 12);
  cout<<endl;
  Inorder(root);
+
+
 
 cout<<"\nMIN = "<<FindMin(root)<<endl;
 cout<<"MAX = "<<FindMax(root)<<endl;
